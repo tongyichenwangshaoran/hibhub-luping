@@ -1,0 +1,21 @@
+.testPage {
+  height: auto !important;
+  min-height: 100vh;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  position: relative;
+  padding: 2rem;
+  background-color: black;
+  color: white;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+/* Override global styles */
+:global(html), :global(body) {
+  overflow: auto !important;
+  height: auto !important;
+}

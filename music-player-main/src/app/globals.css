@@ -1,0 +1,196 @@
+/* Tailwind CSS 指令 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 根变量定义 */
+:root {
+  /* 基础颜色 */
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* 渐变色方案 */
+  --gradient-macha: linear-gradient(135deg, #c5f9d7 0%, #f7d486 100%);
+  --gradient-orange-crush: linear-gradient(135deg, #FDEB71 0%, #F8D800 100%);
+  --gradient-lipstick: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
+  --gradient-purple-haze: linear-gradient(135deg, #A78BFA 0%, #DDD6FE 100%);
+  --gradient-skyfall: linear-gradient(135deg, #89F7FE 0%, #66A6FF 100%);
+  --gradient-emerald-city: linear-gradient(135deg, #6EE7B7 0%, #3B82F6 100%);
+  --gradient-summer-fair: linear-gradient(135deg, #FDEB71 0%, #F8D800 100%);
+  
+  /* 纯色 */
+  --color-shockingly-green: #00ff66;
+  --color-surface-white: #ffffff;
+  --color-pink: #ff66c4;
+  --color-shockingly-pink: #ff00cc;
+  --color-orangey: #ff9900;
+  --color-lilac: #cc99ff;
+  --color-lt-green: #99ff99;
+  --color-blue: #3399ff;
+  
+  /* 文字颜色 */
+  --grey-dark: #333333;
+  --light: #ffffff;
+  --green: #00cc66;
+  --green-dark: #009933;
+  --green-light: #66ff99;
+  --blue: #0066cc;
+  --purple: #9933cc;
+  --red: #ff3333;
+  --orange: #ff9900;
+  
+  /* 动画缓动 */
+  --elastic-out: linear(
+    0, 0.2178 2.1%, 1.1144 8.49%, 1.2959 10.7%, 1.3463 11.81%, 1.3705 12.94%,
+    1.3726, 1.3643 14.48%, 1.3151 16.2%, 1.0317 21.81%, 0.941 24.01%, 0.8912 25.91%,
+    0.8694 27.84%, 0.8698 29.21%, 0.8824 30.71%, 1.0122 38.33%, 1.0357,
+    1.046 42.71%, 1.0416 45.7%, 0.9961 53.26%, 0.9839 57.54%, 0.9853 60.71%,
+    1.0012 68.14%, 1.0056 72.24%, 0.9981 86.66%, 1
+  );
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* 黑白主题 */
+.theme-bw {
+  --theme-background: #000000;
+  --theme-foreground: #ffffff;
+  --theme-accent: #ffffff;
+  --theme-secondary: #888888;
+  --theme-progress-bar: #ffffff;
+}
+
+/* 彩色主题（默认） */
+:root {
+  --theme-background: transparent; /* 用于保持渐变背景 */
+  --theme-foreground: #ffffff;
+  --theme-accent: #ff66c4;
+  --theme-secondary: #3399ff;
+  --theme-progress-bar: #ffffff;
+}
+
+/* 杂色效果 */
+.noise {
+  position: relative;
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  z-index: 1000;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 全局样式 */
+body {
+  background: linear-gradient(135deg, #A78BFA 0%, #DDD6FE 100%);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 添加杂色效果到整个页面 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* 3D 变换样式 */
+.pov, .tray, .die, .cube, .face {
+  transform-style: preserve-3d;
+}
+
+/* 确保正确的3D渲染 */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 默认隐藏滚动条，但不应用于测试页面 */
+body:not([data-route="/test"]) {
+  overflow: hidden;
+}
+
+/* 测试页面特殊处理 */
+body[data-route="/test"],
+html[data-route="/test"] {
+  overflow: auto !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+}
+
+/* 自定义文本效果 */
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+/* 圆形背景 */
+.circle-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  transform: translate3d(-50%, -50%, 0);
+  width: 68vw;
+  height: 68vw;
+  max-width: min(968px, 65vh);
+  max-height: min(968px, 65vh);
+  border-radius: 50%;
+  background-color: var(--color-lilac);
+  box-shadow:
+    inset 0 2vh 15vw rgba(255, 255, 255, 0.5),
+    inset 0 -2vh 7.5vw rgba(0, 0, 0, 0.25),
+    0 6vh 10vw rgba(0, 0, 0, 0.15);
+}
+
+/* 渐变背景容器 */
+.gradient-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: var(--gradient-purple-haze);
+  transition: background 0.5s ease;
+}
+
+/* 歌词动画效果 */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
