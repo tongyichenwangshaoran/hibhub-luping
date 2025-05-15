@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
+    "obs-websocket-js": "^5.0.6",
     "puppeteer": "^24.8.2"
   }
 }
